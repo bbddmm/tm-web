@@ -109,7 +109,7 @@ cd tm-vue
 php artisan serve &
 ```
 
-プロジェクト内に移動し、`php artisan serve`するとウェブサーバが立ち上がる。
+プロジェクト内に移動し、`php artisan serve`するとウェブサーバが立ち上がる。artisanというのはLaravelにおいてあらかじめ用意された便利なコマンド群のこと。
 
 http://localhost:8000/ にアクセスし、Laravelのトップページが表示されていることを確認する。
 
@@ -168,6 +168,20 @@ npm run dev
 一般的には開発環境でminifyは行わず、本番環境用のコンパイルとは区別する。本番環境用にコンパイルする場合、`npm run prod`を使う。
 
 再度Laravelのlogin, registerページにアクセスし、デザインが正しく表示されていることを確認すれば準備完了。
+
+## Laravelのディレクトリ構成
+
+全部書くと非常に煩雑になるため、Vueを学ぶ上で最低限必要な部分についてのみ書く。
+
+- .env: 環境設定。DB絡みのことを行う際には弄るかも。
+- resources/js: コンパイル前のjsやvueファイルを配置する。app.jsがエントリーポイントになっており、他のjsを読みに行く流れ。
+- resources/sass: コンパイル前のsass, scssなどを配置する。
+- resources/views: ここにview（見た目担当のPHP, HTMLなど）用のファイルを配置する。Laravelではviewの記述を簡単にするために、Bladeテンプレートというテンプレートエンジンを使用しており、Bladeを使用する場合は拡張子を.blade.phpにする。
+- public/css/app.css: コンパイルされたcss. 実際に読み込まれているcssの実体はこれ。 
+- public/js/app.js: コンパイルされたjs. 実際に読み込まれているjsの実体はこれ。
+- routes/web.php: ルータ。エンドポイント(例えば /login)に対して表示するファイル名や処理を紐付ける。
+- database: モデル。MySQL等も使用できるが、練習目的だとSQLiteを使うと簡単。モデルについては機会があればそのうち説明する。
+- app/Http/Controllers: コントローラ。APIの処理などはここに書く（ルータにも書ける）。機会があればそのうち説明する。 
 
 ## ES6の基本
 
